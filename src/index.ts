@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoute.js";
+import workoutScheduleRoute from "./routes/workoutScheduleRoute.ts";
 
 const app = express();
 const port = 3001;
@@ -19,7 +20,7 @@ mongoose
 
 
   app.use("/user", userRoute);
-
+  app.use("/workout-schedule", workoutScheduleRoute);
   app.listen(port, () => {
     console.log(`"Server is running at: http://localhost:${port}`)
   });
