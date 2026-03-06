@@ -1,16 +1,19 @@
-import express from "express";
-import { seedInitialWorkoutSchedules, getActiveScheduleForUser} from "../services/workoutScheduleService.js";
+import express, { response } from "express";
+import { getActiveScheduleForUser, addExercise} from "../services/workoutScheduleService.js";
 import type { Document, DefaultSchemaOptions, Types } from "mongoose";
-import type { IworkoutSchedule } from "../models/workoutScheduleModel.ts";
+import type { IWorkoutSchedule } from "../models/workoutScheduleModel.ts";
 import validateJWT from "../middlewares/validateJWT.ts";
 import type { ExtendRequset } from "../types/extendedRequest.ts";
 
 const router = express.Router();
 
-router.post("/seed", async (req, res) => {
+router.post("/add",validateJWT,async (req:ExtendRequset, res) => {
   try {
-    const result = await seedInitialWorkoutSchedules();
-    res.status(200).json(result);
+    const userId = req.user!.userId; 
+
+   const {name, type,sets,day} = req.body;
+   const response = await addExercise({userId,name, type,sets,day})
+    res.status(200).json(response);
   } catch (err) {
     res.status(500).send("something went wrong");
   }

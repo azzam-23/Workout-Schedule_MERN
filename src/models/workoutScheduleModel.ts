@@ -1,50 +1,35 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-export interface Iexercise {
+export interface IExercise {
+   _id?: Types.ObjectId;
   name: string;
   type: string;
   sets: number;
+  day: string;
 }
 
-const exerciseSchema = new Schema<Iexercise>({
+export interface IWorkoutSchedule {
+  userId: Types.ObjectId;
+  exercises: IExercise[];
+}
+
+const exerciseSchema = new Schema<IExercise>({
   name: { type: String, required: true },
   type: { type: String, required: true },
   sets: { type: Number, default: 3 },
-});
-
-
-
-
-export interface Iday {
-  day: string;
-  exercises: Iexercise[];
-}
-
-const daySchema = new Schema<Iday>({
   day: { type: String, required: true },
-  exercises: [exerciseSchema],
 });
 
-
-
-
-export interface IworkoutSchedule {
-  userId: Types.ObjectId;
-  workoutSchedule: Iday[];
-}
-
-const workoutScheduleSchema = new Schema<IworkoutSchedule>({
+const workoutScheduleSchema = new Schema<IWorkoutSchedule>({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  workoutSchedule: [daySchema],
+  exercises: [exerciseSchema],
 });
 
-
-export const workoutScheduleModel =
-  mongoose.model<IworkoutSchedule>(
-    "WorkoutSchedule",
-    workoutScheduleSchema
-  );
+export const workoutScheduleModel = mongoose.model<IWorkoutSchedule>(
+  "WorkoutSchedule",
+  workoutScheduleSchema
+);
