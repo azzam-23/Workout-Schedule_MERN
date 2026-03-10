@@ -1,8 +1,12 @@
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoute.js";
 import workoutScheduleRoute from "./routes/workoutScheduleRoute.ts";
 
+dotenv.config();
+
+console.log(process.env.DATABASE_URL);
 const app = express();
 const port = 3001;
 
@@ -10,7 +14,7 @@ const port = 3001;
 app.use(express.json());
 
 mongoose
-  .connect("mongodb://localhost:27017/workout-sechudule")
+  .connect(process.env.DATABASE_URL || "")
   .then(() => console.log("mongo connected!"))
   .catch((err) => console.log("Failed to connect!", err));
   

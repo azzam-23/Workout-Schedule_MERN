@@ -71,6 +71,6 @@ export const login = async ({ email, password }: LoginParams) => {
 export const generateJwt = (userId: Types.ObjectId | string) => {
   return jwt.sign(
     { userId: userId.toString() },
-    "e126d8cff3823cdbd3cfb61b25f47fbd"
+    process.env.JWT_SECRET || ''
   );
 };
