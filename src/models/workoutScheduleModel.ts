@@ -25,6 +25,7 @@ const workoutScheduleSchema = new Schema<IWorkoutSchedule>({
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
+    unique: true
   },
   exercises: [exerciseSchema],
 });
