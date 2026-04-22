@@ -26,7 +26,7 @@ const validateJWT = (
   try {
    const decoded = jwt.verify(
   token,
-  process.env.JWT_SECRE || ''
+  process.env.JWT_SECRET || ''
 ) as TokenPayload;
 
 console.log(decoded);

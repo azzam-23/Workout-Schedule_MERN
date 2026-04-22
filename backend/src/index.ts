@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoute.js";
 import workoutScheduleRoute from "./routes/workoutScheduleRoute.ts";
+import  cors from "cors";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const port = 3001;
 
 
 app.use(express.json());
-
+app.use(cors());
 mongoose
   .connect(process.env.DATABASE_URL || "")
   .then(() => console.log("mongo connected!"))

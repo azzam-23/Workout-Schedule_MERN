@@ -1,0 +1,49 @@
+/* home.css */
+
+/* Global Reset: Force everything to be white by default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #ffffff; 
+}
+
+.home-page-wrapper {
+  background-color: #121212; /* Deep charcoal background */
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  color: tomato !important; /* Forces Tomato color */
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  font-weight: 800;
+}
+
+/* Grid layout for your cards */
+.workout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.no-data-msg {
+  text-align: center;
+  color: #777777; /* Subtle gray for empty state */
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
+/* Responsive adjustment for mobile titles */
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 1.8rem;
+  }
+}
