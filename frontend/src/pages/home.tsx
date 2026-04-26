@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import WorkoutCard from "../components/workoutCard"; // Import your new component
+import { BASE_URL } from "../constants/baseUrl";
 
 const HomePage = () => {
   const [schedule, setSchedule] = useState([]);
@@ -12,7 +13,7 @@ const HomePage = () => {
 
    
   useEffect(() => {
-    fetch("http://localhost:3001/workout-schedule", {
+    fetch(`${BASE_URL}/workout-schedule`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -24,7 +25,7 @@ const HomePage = () => {
   }, []);
 return (
     <div className="home-container">
-      <h1 className="home-title">🏋️ Workout Tracker</h1>
+      
       
       <div className="workout-grid">
         {schedule.length > 0 ? (
