@@ -1,0 +1,46 @@
+import {  useEffect, useState, type FC, type PropsWithChildren } from "react";
+import {AuthContext} from './AuthContext'
+ 
+
+
+
+const AuthProvider: FC<PropsWithChildren> = ({children}) => {
+
+const [username, setUsername] = useState<string | null>(() =>
+    localStorage.getItem("username")
+  );
+
+  const [token, setToken] = useState<string | null>(() =>
+    localStorage.getItem("token"));
+  
+useEffect(() => {
+  if (!token) return; 
+}, [token]);
+
+  const isAuthenticated = !!token;
+
+const login = (username: string, token: string) => {
+  setUsername(username);
+  setToken(token);
+  localStorage.setItem("username", username);
+  localStorage.setItem("token", token);
+};
+
+ 
+const logout = () => {
+localStorage.removeItem(USERNAME_KEY);
+localStorage.removeItem(TOKEN_KEY);
+setUsername(null);
+setToken(null);
+}
+
+
+  return(
+    <AuthContext.Provider value={{username, token, login, isAuthenticated, logout}}>
+      {children}
+    </AuthContext.Provider>
+  )
+
+}
+
+export default AuthProvider;

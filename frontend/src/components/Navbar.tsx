@@ -1,8 +1,11 @@
 import { useState,useEffect, useRef } from "react";
 import "../style/navbar.css";
+import { useAuth } from "../context/Auth/AuthContext";
 
 
 const Navbar = () => {
+const {username, token} = useAuth();
+
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement |null>(null);
 
@@ -18,7 +21,8 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+ 
+  console.log("from navbar:", username, token);
   return (
     <header className="navbar">
       <h1>🏋️ Workout Tracker</h1>
