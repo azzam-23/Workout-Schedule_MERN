@@ -20,11 +20,11 @@ const WorkoutCard =({ dayPlan }: { dayPlan: DayPlan }) => {
     <div className="workout-card">
       <h2 className="day-title">{dayPlan.day}</h2>
       <div className="exercise-list">
-        {dayPlan.exercises.map((ex : dayPlan) => (
+        {dayPlan.exercises.map((ex : Exercise) => (
           <div key={ex._id} className="exercise-item">
             <div className="exercise-info">
               <h4 className="ex-name">{ex.name}</h4>
-              <span className="exercise-type">{ex.type}</span>
+              <span className="ex-type">{ex.type}</span>
             </div>
             <div className="sets-display">
               <span className="sets-count">{ex.sets}</span>

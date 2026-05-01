@@ -9,6 +9,7 @@
 .profile {
   margin-left: auto;
   position: relative;
+  z-index: 1;
 }
 
 .profile-img {
@@ -16,7 +17,28 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.profile-img:hover {
+  opacity: 0.8;
+  
+}
 
+.tooltip {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.profile:hover .tooltip {
+  opacity: 1;
+}
 .dropdown {
   position: absolute;
   right: 0;
@@ -33,4 +55,26 @@
   color: white;
   background-color: red;
   text-decoration: none;
+}
+.sign-out-button {
+  background-color: darkred;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.navbar-login-button {
+  background-color: white;
+  color: black;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin: 10px 5px;
+  cursor: pointer;
+  font-weight: bold;
 }

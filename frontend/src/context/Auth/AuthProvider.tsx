@@ -28,8 +28,8 @@ const login = (username: string, token: string) => {
 
  
 const logout = () => {
-localStorage.removeItem(USERNAME_KEY);
-localStorage.removeItem(TOKEN_KEY);
+localStorage.removeItem("username");
+localStorage.removeItem("token");
 setUsername(null);
 setToken(null);
 }
