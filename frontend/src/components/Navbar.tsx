@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-const {username, isAuthenticated} = useAuth();
+const {username, isAuthenticated, logout} = useAuth();
 
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement |null>(null);
@@ -27,6 +27,11 @@ const {username, isAuthenticated} = useAuth();
   const handelLogin = () => {
     navigate("/login");
   };
+  const handelLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <header className="navbar">
       <h1>🏋️ Workout Tracker</h1>
@@ -41,9 +46,11 @@ const {username, isAuthenticated} = useAuth();
         />
         <span className="tooltip">Profile</span>
         {open && (
-          <div className="dropdown">
+          <div className="dropdown-menu">
             <h3>{username}</h3>
-            <button className="sign-out-button">Sign out</button>
+            <button className="sign-out-button" onClick={handelLogout}>
+              Sign out
+            </button>
           </div>
         )}
         </> :<button className="navbar-login-button" onClick={handelLogin}>Login</button>}
