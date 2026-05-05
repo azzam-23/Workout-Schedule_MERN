@@ -4,6 +4,7 @@ import LoginPage from "./pages/loginPage"
 import Navbar from "./components/Navbar"
 import RegisterPage from "./pages/RegisterPage"
 import AuthProvider from "./context/Auth/AuthProvider"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 function App() {
  
@@ -13,7 +14,9 @@ function App() {
       <BrowserRouter>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
+        <Route element={<ProtectedRoute/>}>
+          <Route path="/" element={<HomePage/>}/>
+        </Route>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<RegisterPage/>}/>
        <Route path="/login" element={<LoginPage/>}/>

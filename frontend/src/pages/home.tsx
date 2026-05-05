@@ -1,35 +1,57 @@
 
 
-import { useEffect, useState } from "react";
-import WorkoutCard from "../components/workoutCard"; // Import your new component
+import {useEffect, useState } from "react";
+import WorkoutCard from "../components/workoutCard"; 
 import { BASE_URL } from "../constants/baseUrl";
+import { useAuth } from "../context/Auth/AuthContext";
 
+
+interface Exercise {
+  _id: string;
+  name: string;
+  type: string;
+  sets: number;
+}
+interface DayPlan {
+  _id: string;
+  day: string;
+  exercises: Exercise[];
+}
 const HomePage = () => {
-  const [schedule, setSchedule] = useState([]);
-  
+  const [schedule, setSchedule] = useState<DayPlan[]>([]);
+  const {token} = useAuth();
+  const [error, setError] = useState("");
 
-
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWNjOTIyY2M1NzdlMWU2Y2JmZDk2NmUiLCJpYXQiOjE3NzUwMTQ4NTF9.J5UCqOsBN1tTRwlkpBjI6zCmGFnWvSveaM_NEX036-o";
-
+    
    
   useEffect(() => {
-    fetch(`${BASE_URL}/workout-schedule`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(async (response) => {
-      const data = await response.json();
+    if(!token) return;
+    
+    const fetchSchedule = async () => {
+      const response = await fetch(`${BASE_URL}/workout-schedule`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      if(!response.ok) {    
+        setError("Failed to fetch workout schedule. Please try again.");
+      }
+   
+    const data = await response.json();
     console.log(data);
-      setSchedule(data.workoutSchedule);
-    });
+    setSchedule(data.workoutSchedule || []);
+    };
+    fetchSchedule();
   }, []);
+
 return (
     <div className="home-container">
       
       
       <div className="workout-grid">
         {schedule.length > 0 ? (
-          schedule.map((dayPlan: any) => (
+          schedule.map((dayPlan: DayPlan) => (
             <WorkoutCard key={dayPlan._id} dayPlan={dayPlan} />
           ))
         ) : (
