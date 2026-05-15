@@ -1,0 +1,56 @@
+.add-exercise-container {
+  background: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.add-exercise-title {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.add-exercise-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.submit-button,
+.cancel-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button {
+  background: tomato;
+  color: white;
+}
+
+.cancel-button {
+  background: gray;
+  color: white;
+}

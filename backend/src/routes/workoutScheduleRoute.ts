@@ -1,4 +1,7 @@
 import express from "express";
+import validateJWT from "../middlewares/validateJWT.ts";
+import type { ExtendRequset } from "../types/extendedRequest.ts";
+
 import {
   getActiveScheduleForUser,
   addExercise,
@@ -6,18 +9,31 @@ import {
   deleteExercise,
 } from "../services/workoutScheduleService.js";
 
-import validateJWT from "../middlewares/validateJWT.ts";
-import type { ExtendRequset } from "../types/extendedRequest.ts";
-
 const router = express.Router();
 
+/* ---------------- GET ---------------- */
+router.get("/", validateJWT, async (req: ExtendRequset, res) => {
+  try {
+    const userId = req.user!.userId;
 
+    const schedule = await getActiveScheduleForUser(userId);
+
+    res.status(200).json({
+      workoutSchedule: schedule.workoutSchedule,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong");
+  }
+});
+
+/* ---------------- ADD ---------------- */
 router.post("/add", validateJWT, async (req: ExtendRequset, res) => {
   try {
     const userId = req.user!.userId;
     const { name, type, sets, day } = req.body;
 
-    const response = await addExercise({
+    const result = await addExercise({
       userId,
       name,
       type,
@@ -25,35 +41,20 @@ router.post("/add", validateJWT, async (req: ExtendRequset, res) => {
       day,
     });
 
-    res.status(200).json(response);
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).send("Something went wrong");
   }
 });
 
-
-router.get("/", validateJWT, async (req: ExtendRequset, res) => {
-  try {
-    const userId = req.user!.userId;
-
-    const schedule = await getActiveScheduleForUser({ userId });
-
-    res.status(200).json(schedule);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Something went wrong");
-  }
-});
-
-
+/* ---------------- UPDATE ---------------- */
 router.put("/update", validateJWT, async (req: ExtendRequset, res) => {
   try {
     const userId = req.user!.userId;
+    const { exerciseId, name, type, sets } = req.body;
 
-    const { name, type, sets, exerciseId } = req.body;
-
-    const response = await updateExercise({
+    const result = await updateExercise({
       userId,
       exerciseId,
       name,
@@ -61,14 +62,14 @@ router.put("/update", validateJWT, async (req: ExtendRequset, res) => {
       sets,
     });
 
-    res.status(200).json(response);
+    res.status(200).json(result);
   } catch (err) {
     console.error(err);
     res.status(500).send("Something went wrong");
   }
 });
 
-
+/* ---------------- DELETE ---------------- */
 router.delete(
   "/:exerciseId",
   validateJWT,
@@ -77,12 +78,12 @@ router.delete(
       const userId = req.user!.userId;
       const { exerciseId } = req.params;
 
-      const response = await deleteExercise({
+      const result = await deleteExercise({
         userId,
         exerciseId,
       });
 
-      res.status(200).json(response);
+      res.status(200).json(result);
     } catch (err) {
       console.error(err);
       res.status(500).send("Something went wrong");
@@ -91,5 +92,3 @@ router.delete(
 );
 
 export default router;
-
-

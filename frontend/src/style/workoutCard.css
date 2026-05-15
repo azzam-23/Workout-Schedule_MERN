@@ -93,3 +93,26 @@
  color: white;
  font-size: medium;
 }
+.AddExerciseButton{
+  width: 20%;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+.AddExerciseButton:hover {
+  background-color: #fad12e;
+}
+.edit-button{
+  background-color: transparent;
+  border: none;
+  color: #ffcc00; 
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: color 0.2s ease;
+}

@@ -5,12 +5,14 @@ import Navbar from "./components/Navbar"
 import RegisterPage from "./pages/RegisterPage"
 import AuthProvider from "./context/Auth/AuthProvider"
 import ProtectedRoute from "./components/ProtectedRoute"
+import ScheduleProvider from "./context/WorkoutSecudule/SchduleProvider"
 
 function App() {
  
 
   return (
     <AuthProvider>
+      <ScheduleProvider>
       <BrowserRouter>
       <Navbar/>
       <Routes>
@@ -22,6 +24,7 @@ function App() {
        <Route path="/login" element={<LoginPage/>}/>
       </Routes>
       </BrowserRouter>
+      </ScheduleProvider>
     </AuthProvider>
   );
 }
