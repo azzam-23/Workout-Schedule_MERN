@@ -69,7 +69,6 @@ router.put("/update", validateJWT, async (req: ExtendRequset, res) => {
   }
 });
 
-/* ---------------- DELETE ---------------- */
 router.delete(
   "/:exerciseId",
   validateJWT,

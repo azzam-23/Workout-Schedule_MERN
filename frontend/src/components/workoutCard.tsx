@@ -9,7 +9,6 @@ type Props = {
 };
 
 const WorkoutCard = ({ dayPlan }: Props) => {
-  const [isEditing, setIsEditing] = useState(false);
   const [isOpen, setIsOpen] =  useState(false);
   return (
     <div className="workout-card">

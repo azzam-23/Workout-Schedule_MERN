@@ -6,13 +6,14 @@ export interface ScheduleContextType {
   schedule: DayPlan[];
 
   addExercise: (exercise: Exercise) => void;
-
+  fetchSchedule: () => void;
 }
 
 
 export const scheduleContext = createContext<ScheduleContextType>({
   schedule: [],
   addExercise: () => {},
+  fetchSchedule: () => {}
 
 });
 

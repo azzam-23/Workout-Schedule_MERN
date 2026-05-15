@@ -74,7 +74,7 @@ export const updateExercise = async ({
 
   for (const day of schedule.workoutSchedule) {
     const exercise = day.exercises.find(
-      (e: any) => e._id?.toString() === exerciseId
+      (e) => e._id?.toString() === exerciseId
     );
 
     if (exercise) {
@@ -100,7 +100,7 @@ export const deleteExercise = async ({
 
   schedule.workoutSchedule.forEach((day) => {
     day.exercises = day.exercises.filter(
-      (e: any) => e._id?.toString() !== exerciseId
+      (e) => e._id?.toString() !== exerciseId
     );
   });
 
