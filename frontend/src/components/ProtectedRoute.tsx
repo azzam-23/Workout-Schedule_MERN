@@ -7,7 +7,7 @@ const ProtectedRoute = () => {
   if(!isAuthenticated){
     return<Navigate to="/login" replace={true}/>
   }
-console.log("User is authenticated, rendering protected route.");
+
   return <Outlet />;
 };
 
