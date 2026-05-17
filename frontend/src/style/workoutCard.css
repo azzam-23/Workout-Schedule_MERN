@@ -4,9 +4,10 @@
   background-color: #1f1f1f;
   border-radius: 16px;
   padding: 25px;
-  box-shadow: 0 4px 20px rgba(255, 99, 71, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #333;
+  box-shadow: 0 4px 20px rgba(255, 99, 71, 0.2);
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
 .workout-card:hover {
@@ -14,17 +15,12 @@
   box-shadow: 0 6px 30px rgba(255, 99, 71, 0.4);
 }
 
-.day-header {
-  color:tomato ;
-  font-size: 1.6rem;
-  margin: 0 0 15px 0;
-  text-transform: uppercase;
-  border-bottom: 1px solid #584949;
-  padding-bottom: 10px;
-}
-
-.day-title{
+.day-title {
   color: white;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
 }
 
 .exercise-list {
@@ -35,20 +31,26 @@
 
 .exercise-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
   background-color: #1a1a1a;
   padding: 12px 15px;
-  border-radius: 8px;
+
+  border-radius: 10px;
   border-left: 4px solid tomato;
-  transition: background-color 0.2s ease;
+
+  transition: background-color .2s ease;
 }
 
 .exercise-item:hover {
   background-color: #2a2a2a;
 }
 
-.ex-info {
+.exercise-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -57,76 +59,114 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #ffffff !important; 
+  color: white;
 }
+
 .ex-type {
-  font-size: 0.7rem;
-  color: white ;
-  text-transform: uppercase;
-  font-size: small;
-  border: 1px solid tomato;
-  padding: 2px 6px;
-  border-radius: 4px;
-  display: inline-block;
-  margin-top: 5px;
+  margin-top: 6px;
+
   width: fit-content;
+
+  padding: 4px 8px;
+
+  border: 1px solid tomato;
+  border-radius: 5px;
+
+  color: white;
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 
-.sets-container {
-  text-align: center;
+.sets-display {
+  width: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 8px;
+
+  background-color: #262626;
+  border-radius: 8px;
 }
 
-.sets-val {
-  display: block;
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: #ffcc00 !important;
+.sets-count {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ffcc00;
 }
 
 .sets-label {
-  font-size: 0.6rem;
-  color: white;
+  color: #aaa;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  font-size: large;
 }
-.sets-count{
- color: white;
- font-size: medium;
+
+.edit-button {
+  min-width: 70px;
+
+  background: transparent;
+  border: none;
+
+  color: #ffcc00;
+
+  cursor: pointer;
+
+  font-size: .9rem;
+  font-weight: bold;
+
+  transition: .2s;
 }
-.AddExerciseButton{
-  width: 20%;
+
+.edit-button:hover {
+  color: tomato;
+}
+
+.AddExerciseButton {
   margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #ffcc00;
-  color: black;
+
+  padding: 10px;
+
+  width: 100%;
+
   border: none;
   border-radius: 8px;
+
+  background-color: #ffcc00;
+  color: black;
+
+  font-size: .95rem;
+  font-weight: bold;
+
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
+
+  transition: .2s;
 }
+
 .AddExerciseButton:hover {
   background-color: #fad12e;
-}
-.edit-button{
-  background-color: transparent;
-  border: none;
-  color: #ffcc00; 
-  cursor: pointer;
-  font-size: 0.8rem;
-  transition: color 0.2s ease;
 }
 
 .delete-day-button {
   margin-top: 10px;
-  background: darkred;
-  color: white;
+
+  padding: 10px;
+
+  width: 100%;
+
   border: none;
-  padding: 8px 12px;
   border-radius: 8px;
+
+  background-color: darkred;
+  color: white;
+
+  font-weight: bold;
+
   cursor: pointer;
+
+  transition: .2s;
 }
 
 .delete-day-button:hover {
-  opacity: 0.8;
+  opacity: .8;
 }

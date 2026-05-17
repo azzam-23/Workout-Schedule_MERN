@@ -36,7 +36,7 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
       setError("Server error");
     }
   };
-   
+
   const addExercise = async (exercise: Exercise) => {
     try {
       const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
@@ -56,44 +56,66 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
-const addDay = async (day: string) => {
-  try {
-    const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ day }),
-    });
+  const addDay = async (day: string) => {
+    try {
+      const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ day }),
+      });
 
-    if (!response.ok) return;
+      if (!response.ok) return;
 
-    await fetchSchedule();
-  } catch (err) {
-    console.log(err);
-  }
-};
+      await fetchSchedule();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
- const deleteDay = async (day: string) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/workout-schedule/day/${day}`,
-      {
+  const deleteDay = async (day: string) => {
+    try {
+      const response = await fetch(`${BASE_URL}/workout-schedule/day/${day}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
-    );
+      });
 
-    if (!response.ok) return;
+      if (!response.ok) return;
 
-    await fetchSchedule();
-  } catch (err) {
-    console.log(err);
-  }
-};
+      await fetchSchedule();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updateExercise = async (exercise: Exercise) => {
+    try {
+      const response = await fetch(`${BASE_URL}/workout-schedule/update`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          exerciseId: exercise._id,
+          name: exercise.name,
+          type: exercise.type,
+          sets: exercise.sets,
+        }),
+      });
+
+      if (!response.ok) return;
+
+      await fetchSchedule();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <scheduleContext.Provider
       value={{
@@ -101,7 +123,8 @@ const addDay = async (day: string) => {
         addExercise,
         addDay,
         fetchSchedule,
-        deleteDay
+        deleteDay,
+        updateExercise,
       }}
     >
       {children}

@@ -9,6 +9,7 @@ export interface ScheduleContextType {
   fetchSchedule: () => void;
   addDay: (day: string) => void;
   deleteDay: (day: string) => void;
+  updateExercise: (exercise: Exercise) => void;
 }
 
 
@@ -18,6 +19,7 @@ export const scheduleContext = createContext<ScheduleContextType>({
   fetchSchedule: () => {},
   addDay: () => {},
   deleteDay: () => {},
+  updateExercise: () => {}
 });
 
 export const useSchedule = () => useContext(scheduleContext);
