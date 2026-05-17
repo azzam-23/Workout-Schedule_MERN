@@ -1,8 +1,14 @@
-import { workoutScheduleModel } from "../models/workoutScheduleModel.js";
-import { Types } from "mongoose";
+import { workoutScheduleModel } from "../models/workoutScheduleModel.ts";
 
 /* ---------------- CREATE ---------------- */
-const createScheduleForUser = async (userId: string) => {
+
+interface CreateScheduleForUser {
+  userId: string;
+}
+
+const createScheduleForUser = async ({
+  userId,
+}: CreateScheduleForUser) => {
   const existing = await workoutScheduleModel.findOne({ userId });
 
   if (existing) return existing;
@@ -17,33 +23,45 @@ const createScheduleForUser = async (userId: string) => {
 };
 
 /* ---------------- GET ---------------- */
-export const getActiveScheduleForUser = async (userId: string) => {
+
+interface GetActiveScheduleForUser {
+  userId: string;
+}
+
+export const getActiveScheduleForUser = async ({
+  userId,
+}: GetActiveScheduleForUser) => {
   let schedule = await workoutScheduleModel.findOne({ userId });
 
   if (!schedule) {
-    schedule = await createScheduleForUser(userId);
+    schedule = await createScheduleForUser({ userId });
   }
 
   return schedule;
 };
 
 /* ---------------- ADD EXERCISE ---------------- */
+
+interface AddExercise {
+  userId: string;
+  name: string;
+  type: string;
+  sets: number;
+  day: string;
+}
+
 export const addExercise = async ({
   userId,
   name,
   type,
   sets,
   day,
-}: {
-  userId: string;
-  name: string;
-  type: string;
-  sets: number;
-  day: string;
-}) => {
-  const schedule = await getActiveScheduleForUser(userId);
+}: AddExercise) => {
+  const schedule = await getActiveScheduleForUser({ userId });
 
-  let dayPlan = schedule.workoutSchedule.find((d) => d.day === day);
+  let dayPlan = schedule.workoutSchedule.find(
+    (d) => d.day === day
+  );
 
   if (!dayPlan) {
     dayPlan = { day, exercises: [] };
@@ -56,21 +74,24 @@ export const addExercise = async ({
   return schedule;
 };
 
-/* ---------------- UPDATE ---------------- */
+/* ---------------- UPDATE EXERCISE ---------------- */
+
+interface UpdateExercise {
+  userId: string;
+  exerciseId: string;
+  name?: string;
+  type?: string;
+  sets?: number;
+}
+
 export const updateExercise = async ({
   userId,
   exerciseId,
   name,
   type,
   sets,
-}: {
-  userId: string;
-  exerciseId: string;
-  name?: string;
-  type?: string;
-  sets?: number;
-}) => {
-  const schedule = await getActiveScheduleForUser(userId);
+}: UpdateExercise) => {
+  const schedule = await getActiveScheduleForUser({ userId });
 
   for (const day of schedule.workoutSchedule) {
     const exercise = day.exercises.find(
@@ -88,21 +109,45 @@ export const updateExercise = async ({
   return schedule;
 };
 
-/* ---------------- DELETE ---------------- */
+/* ---------------- DELETE EXERCISE ---------------- */
+
+interface DeleteExercise {
+  userId: string;
+  exerciseId: string;
+}
+
 export const deleteExercise = async ({
   userId,
   exerciseId,
-}: {
-  userId: string;
-  exerciseId: string;
-}) => {
-  const schedule = await getActiveScheduleForUser(userId);
+}: DeleteExercise) => {
+  const schedule = await getActiveScheduleForUser({ userId });
 
   schedule.workoutSchedule.forEach((day) => {
     day.exercises = day.exercises.filter(
       (e) => e._id?.toString() !== exerciseId
     );
   });
+
+  await schedule.save();
+  return schedule;
+};
+
+/* ---------------- DELETE DAY ---------------- */
+
+interface DeleteDay {
+  userId: string;
+  day: string;
+}
+
+export const deleteDay = async ({
+  userId,
+  day,
+}: DeleteDay) => {
+  const schedule = await getActiveScheduleForUser({ userId });
+
+  schedule.workoutSchedule = schedule.workoutSchedule.filter(
+    (dayPlan) => dayPlan.day !== day
+  );
 
   await schedule.save();
   return schedule;

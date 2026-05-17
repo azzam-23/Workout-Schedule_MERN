@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../style/addExercise.css";
 import { useSchedule } from "../context/WorkoutSecudule/SchduleContext";
 
+
+
 type Props = {
   isOpen: boolean;
   onClose: () => void;

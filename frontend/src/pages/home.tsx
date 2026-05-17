@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import WorkoutCard from "../components/workoutCard";
 import { useSchedule } from "../context/WorkoutSecudule/SchduleContext";
+import { useAuth } from "../context/Auth/AuthContext";
 
 const HomePage = () => {
   const { schedule, fetchSchedule } = useSchedule();
-
+  const { token } = useAuth();
   useEffect(() => {
     fetchSchedule();
-  }, []);
-
+  }, [token]);
+  
   return (
     <div className="home-container">
       <div className="workout-grid">

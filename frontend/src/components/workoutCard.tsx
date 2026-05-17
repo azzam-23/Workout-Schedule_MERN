@@ -3,13 +3,15 @@ import type { Exercise } from "../types/Exercises";
 import type { DayPlan } from "../types/DayPlan";
 import { useState } from "react";
 import AddExercise from "./AddExercise";
+import { useSchedule } from "../context/WorkoutSecudule/SchduleContext";
 
 type Props = {
   dayPlan: DayPlan;
 };
 
 const WorkoutCard = ({ dayPlan }: Props) => {
-  const [isOpen, setIsOpen] =  useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { deleteDay } = useSchedule();
   return (
     <div className="workout-card">
       <h2 className="day-title">{dayPlan.day}</h2>
@@ -26,22 +28,25 @@ const WorkoutCard = ({ dayPlan }: Props) => {
               <span className="sets-count">{ex.sets}</span>
               <span className="sets-label"> Sets</span>
             </div>
-            <button className="edit-button" >
-              Edit
-            </button>
-            
+            <button className="edit-button">Edit</button>
           </div>
         ))}
         <button className="AddExerciseButton " onClick={() => setIsOpen(true)}>
           Add Exercise
         </button>
-       { isOpen && (
+        {isOpen && (
           <AddExercise
             isOpen={isOpen}
             onClose={() => setIsOpen(false)}
             day={dayPlan.day}
           />
         )}
+        <button
+          className="delete-day-button"
+          onClick={() => deleteDay(dayPlan.day)}
+        >
+          Delete Day
+        </button>
       </div>
     </div>
   );

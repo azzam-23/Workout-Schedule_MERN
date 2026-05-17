@@ -2,13 +2,17 @@ import { useState,useEffect, useRef } from "react";
 import "../style/navbar.css";
 import { useAuth } from "../context/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useSchedule } from "../context/WorkoutSecudule/SchduleContext";
 
 
 const Navbar = () => {
 const {username, isAuthenticated, logout} = useAuth();
-
+const { addDay } = useSchedule();
+const { schedule } = useSchedule();
   const [open, setOpen] = useState(false);
+
   const menuRef = useRef<HTMLDivElement |null>(null);
+
  const navigate = useNavigate();
   useEffect(() => {
     const handleClickOutside = (e : MouseEvent) => {
@@ -31,11 +35,26 @@ const {username, isAuthenticated, logout} = useAuth();
     logout();
     navigate("/login");
   };
-
+ const handleAddDay = () => {
+  const nextDay = `Day ${schedule.length + 1}`;
+  addDay(nextDay);
+};
   return (
     <header className="navbar">
       <h1>🏋️ Workout Tracker</h1>
 
+
+       <div className="navbar-actions">
+
+        {isAuthenticated && (
+          <button
+            className="add-day-button"
+            onClick={handleAddDay}
+          >
+            + Add Day
+          </button>
+        )}
+      </div>
       <div className="profile" ref={menuRef}>
         {isAuthenticated ? <>
         <img
@@ -48,6 +67,7 @@ const {username, isAuthenticated, logout} = useAuth();
         {open && (
           <div className="dropdown-menu">
             <h3>{username}</h3>
+
             <button className="sign-out-button" onClick={handelLogout}>
               Sign out
             </button>
