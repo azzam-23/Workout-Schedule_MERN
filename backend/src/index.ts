@@ -7,15 +7,15 @@ import  cors from "cors";
 
 dotenv.config();
 
-console.log(process.env.DATABASE_URL);
+console.log(process.env.MONGO_URI);
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 5000;
 
 
 app.use(express.json());
 app.use(cors());
 mongoose
-  .connect(process.env.DATABASE_URL || "")
+  .connect(process.env.MONGO_URI || "")
   .then(() => console.log("mongo connected!"))
   .catch((err) => console.log("Failed to connect!", err));
   
