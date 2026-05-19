@@ -9,8 +9,7 @@ const Navbar = () => {
 const {username, isAuthenticated, logout} = useAuth();
 const { addDay } = useSchedule();
 const { schedule } = useSchedule();
-  const [open, setOpen] = useState(false);
-
+const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement |null>(null);
 
  const navigate = useNavigate();
@@ -28,16 +27,29 @@ const { schedule } = useSchedule();
   }, []);
  
 
-  const handelLogin = () => {
-    navigate("/login");
+ 
+
+    const handelRegister = () => {
+    navigate("/register");
   };
   const handelLogout = () => {
     logout();
     navigate("/login");
   };
+
  const handleAddDay = () => {
-  const nextDay = `Day ${schedule.length + 1}`;
-  addDay(nextDay);
+  const existingNumbers = schedule.map(
+    (d) =>
+      Number(
+        d.day.replace("Day ", "")
+      )
+  );
+
+  const nextNumber =
+    Math.max(0, ...existingNumbers) +
+    1;
+
+  addDay(`Day ${nextNumber}`);
 };
   return (
     <header className="navbar">
@@ -58,7 +70,7 @@ const { schedule } = useSchedule();
       <div className="profile" ref={menuRef}>
         {isAuthenticated ? <>
         <img
-          src="https://th.bing.com/th/id/OIP.XQ-com-ULw7aaf_U3BcQ3AAAAA?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+          src="https://api.dicebear.com/9.x/thumbs/svg?seed=Profile"
           alt="profile"
           className="profile-img"
           onClick={() => setOpen(prev => !prev)}
@@ -73,7 +85,7 @@ const { schedule } = useSchedule();
             </button>
           </div>
         )}
-        </> :<button className="navbar-login-button" onClick={handelLogin}>Login</button>}
+        </> :<button className="navbar-login-button" onClick={handelRegister}>Register</button>}
         
       </div>
     </header>

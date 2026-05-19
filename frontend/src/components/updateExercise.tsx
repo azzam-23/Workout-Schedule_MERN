@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "../style/addExercise.css";
+import "../style/updateExercise.css";
+import "../style/deleteExercise.css"
 import { useSchedule } from "../context/WorkoutSecudule/SchduleContext";
 import type { Exercise } from "../types/Exercises";
 
@@ -16,7 +17,7 @@ const UpdateExercise = ({ isOpen, onClose, exercise }: Props) => {
 
   const [sets, setSets] = useState(exercise.sets);
 
-  const { updateExercise } = useSchedule();
+  const { updateExercise, deleteExercise } = useSchedule();
 
   if (!isOpen) return null;
 
@@ -34,33 +35,31 @@ const UpdateExercise = ({ isOpen, onClose, exercise }: Props) => {
     onClose();
   };
 
+  const handleDelete = async () => {
+    await deleteExercise(exercise._id);
+
+    onClose();
+  };
+
   return (
-    <div className="add-exercise-container">
-      <h2 className="add-exercise-title">Update Exercise</h2>
+    <div className="update-exercise-container">
+      <h2 className="update-exercise-title">Update Exercise</h2>
 
-      <form className="add-exercise-form" onSubmit={handleSubmit}>
+      <form className="update-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Exercise Name</label>
+          <label>Name</label>
 
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
         <div className="form-group">
-          <label>Exercise Type</label>
+          <label>Type</label>
 
-          <input
-            type="text"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-          />
+          <input value={type} onChange={(e) => setType(e.target.value)} />
         </div>
 
         <div className="form-group">
-          <label>Number of Sets</label>
+          <label>Sets</label>
 
           <input
             type="number"
@@ -69,13 +68,21 @@ const UpdateExercise = ({ isOpen, onClose, exercise }: Props) => {
           />
         </div>
 
-        <div className="button-group">
-          <button type="submit" className="submit-button">
-            Update Exercise
+        <div className="update-button-group">
+          <button type="submit" className="update-button">
+            Update
           </button>
 
-          <button type="button" className="cancel-button" onClick={onClose}>
+          <button type="button" className="update-cancel" onClick={onClose}>
             Cancel
+          </button>
+
+          <button
+            type="button"
+            className="delete-exercise-button"
+            onClick={handleDelete}
+          >
+            Delete
           </button>
         </div>
       </form>

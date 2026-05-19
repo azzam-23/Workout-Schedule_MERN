@@ -1,0 +1,11 @@
+.delete-exercise-button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+
+  background: darkred;
+  color: white;
+
+  cursor: pointer;
+  font-weight: bold;
+}

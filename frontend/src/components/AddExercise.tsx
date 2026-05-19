@@ -74,7 +74,7 @@ const handleSubmit = (e: React.FormEvent) => {
           />
         </div>
 
-        <div className="button-group">
+        <div className="add-button-group">
           <button type="submit" className="submit-button">
             Add Exercise
           </button>

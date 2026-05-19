@@ -1,6 +1,6 @@
 import { workoutScheduleModel } from "../models/workoutScheduleModel.ts";
 
-/* ---------------- CREATE ---------------- */
+
 
 interface CreateScheduleForUser {
   userId: string;
@@ -22,7 +22,7 @@ const createScheduleForUser = async ({
   return newSchedule;
 };
 
-/* ---------------- GET ---------------- */
+
 
 interface GetActiveScheduleForUser {
   userId: string;
@@ -40,7 +40,7 @@ export const getActiveScheduleForUser = async ({
   return schedule;
 };
 
-/* ---------------- ADD EXERCISE ---------------- */
+
 
 interface AddExercise {
   userId: string;
@@ -74,7 +74,7 @@ export const addExercise = async ({
   return schedule;
 };
 
-/* ---------------- UPDATE EXERCISE ---------------- */
+
 
 interface UpdateExercise {
   userId: string;
@@ -109,7 +109,7 @@ export const updateExercise = async ({
   return schedule;
 };
 
-/* ---------------- DELETE EXERCISE ---------------- */
+
 
 interface DeleteExercise {
   userId: string;
@@ -132,7 +132,7 @@ export const deleteExercise = async ({
   return schedule;
 };
 
-/* ---------------- DELETE DAY ---------------- */
+
 
 interface DeleteDay {
   userId: string;

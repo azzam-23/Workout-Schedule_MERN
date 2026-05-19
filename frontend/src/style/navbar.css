@@ -1,116 +1,214 @@
+
 .navbar {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  background: #1f1f1f;
+  justify-content: space-between;
+
+  padding: 14px 30px;
+
+  background: #1a1a1a;
   color: white;
+
+  border-bottom: 1px solid #333;
+  box-shadow: 0 4px 20px rgba(0,0,0,.35);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
+
 
 .navbar h1 {
   flex: 1;
+
+  font-size: 1.7rem;
+  font-weight: 700;
+
+  color: tomato;
+
+  margin: 0;
 }
+
 
 
 .navbar-actions {
   flex: 1;
+
   display: flex;
-  left: 500px;
-  padding-right: 20px;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
 }
+
 
 
 .profile {
   flex: 1;
+
   display: flex;
   justify-content: flex-end;
+
   position: relative;
 }
 
 .profile-img {
-  height: 60px;
+  width: 58px;
+  height: 58px;
+
   border-radius: 50%;
+  object-fit: cover;
+
   cursor: pointer;
-}
-.profile-img:hover {
-  opacity: 0.8;
-  
+
+  border: 2px solid tomato;
+
+  transition: 0.3s ease;
 }
 
+.profile-img:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+/* tooltip */
 .tooltip {
   position: absolute;
-  bottom: -25px;
+
+  top: 70px;
   right: 0;
-  background: #333;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 18px;
+
+  background: #2a2a2a;
+
+  padding: 6px 10px;
+
+  border-radius: 8px;
+
+  font-size: 0.85rem;
+
   opacity: 0;
-  transition: opacity 0.2s ease;
   pointer-events: none;
+
+  transition: 0.2s ease;
 }
 
 .profile:hover .tooltip {
   opacity: 1;
 }
-.dropdown {
+
+
+.dropdown-menu {
   position: absolute;
+
+  top: 80px;
   right: 0;
-  top: 50px;
-  background: #2a2a2a;
-  padding: 10px;
-  border-radius: 10px;
-  min-width: 150px;
+
+  min-width: 180px;
+
+  background: #262626;
+
+  padding: 15px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+
+  animation: fade 0.2s ease;
 }
 
-.profileScreen_signOut {
-  display: block;
-  padding: 10px;
-  color: white;
-  background-color: red;
-  text-decoration: none;
-}
-.sign-out-button {
-  background-color: darkred;
-  color: white;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin: 10px 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.navbar-login-button {
-  background-color: white;
-  color: black;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin: 10px 5px;
-  cursor: pointer;
-  font-weight: bold;
+
+
+button {
+  font-family: inherit;
 }
 
-.navbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+
 
 .add-day-button {
-  padding: 10px 16px;
+  padding: 10px 18px;
+
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: #820202;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #ff4d4d, #ff7a59);
+
   color: white;
-  font-weight: 500;
-  transition: 0.2s ease;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 18px rgba(255, 77, 77, 0.25);
+
+  transition: all 0.25s ease;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.add-day-button:hover {
+  transform: translateY(-3px) scale(1.05);
+
+  box-shadow: 0 12px 28px rgba(255, 77, 77, 0.4);
+
+  filter: brightness(1.08);
 }
 
-.add-day-button:hover {
-  background-color: #ca4938;
+
+.navbar-login-button {
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: white;
+  color: black;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.navbar-login-button:hover {
+  transform: translateY(-2px);
+}
+
+
+
+.sign-out-button {
+  width: 100%;
+
+  padding: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: darkred;
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.sign-out-button:hover {
+  background: #b30000;
+}
+
+
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

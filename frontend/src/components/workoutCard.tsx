@@ -17,7 +17,7 @@ const WorkoutCard = ({ dayPlan }: Props) => {
     null,
   );
 
-  const { deleteDay } = useSchedule();
+  const { deleteDay, deleteExercise } = useSchedule();
 
   return (
     <div className="workout-card">
@@ -64,11 +64,15 @@ const WorkoutCard = ({ dayPlan }: Props) => {
           day={dayPlan.day}
         />
         {selectedExercise && (
-          <UpdateExercise
+          <><UpdateExercise
             isOpen={true}
             exercise={selectedExercise}
-            onClose={() => setSelectedExercise(null)}
-          />
+            onClose={() => setSelectedExercise(null)} /><button
+              className="delete-exercise-button"
+              onClick={() => deleteExercise(selectedExercise._id)}
+            >
+              Delete Exercise
+            </button></>
         )}
       </div>
     </div>

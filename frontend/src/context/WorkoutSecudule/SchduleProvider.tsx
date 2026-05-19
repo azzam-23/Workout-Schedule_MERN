@@ -1,9 +1,8 @@
 import { useState, type FC, type PropsWithChildren } from "react";
-
 import { scheduleContext } from "./SchduleContext";
 import { BASE_URL } from "../../constants/baseUrl";
 import { useAuth } from "../Auth/AuthContext";
-import type { Exercise } from "../../types/Exercises";
+import type { Exercise, NewExercise } from "../../types/Exercises";
 import type { DayPlan } from "../../types/DayPlan";
 
 const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -37,7 +36,7 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
-  const addExercise = async (exercise: Exercise) => {
+  const addExercise = async (exercise: NewExercise) => {
     try {
       const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
         method: "POST",
@@ -116,6 +115,27 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
       console.log(err);
     }
   };
+
+  const deleteExercise = async (exerciseId: string) => {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/workout-schedule/${exerciseId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) return;
+
+      await fetchSchedule();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <scheduleContext.Provider
       value={{
@@ -125,6 +145,7 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
         fetchSchedule,
         deleteDay,
         updateExercise,
+        deleteExercise,
       }}
     >
       {children}
