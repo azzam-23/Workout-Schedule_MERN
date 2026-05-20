@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# Workout Schedule MERN Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack workout scheduling web application built using the MERN stack. The project allows users to manage workout schedules through a responsive frontend interface and secure backend API.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://workout-schedule-mern.vercel.app/
 
-## React Compiler
+## GitHub Repository
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://github.com/azzam-23/Workout-Schedule_MERN
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- User authentication using JWT
+- Protected routes
+- Full CRUD operations
+- Responsive UI design
+- React Context API state management
+- RESTful API architecture
+- MongoDB Atlas cloud database integration
+- Full-stack deployment using Vercel and Railway
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Frontend
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- React
+- TypeScript
+- React Router
+- Context API
+- CSS
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Backend
+
+- Node.js
+- Express.js
+- JWT Authentication
+
+## Database
+
+- MongoDB
+- Mongoose
+- MongoDB Atlas
+
+## Deployment
+
+- Vercel
+- Railway
+
+---
+
+# Installation
+
+## Clone the repository
+
+bash git clone https://github.com/azzam-23/Workout-Schedule_MERN.git
+
+## Install dependencies
+
+### Frontend
+
+bash cd frontend npm install
+
+### Backend
+
+bash cd backend npm install
+
+---
+
+# Environment Variables
+
+Create a .env file inside the backend folder:
+
+env MONGO_URI=your_mongodb_connection JWT_SECRET=your_secret_key PORT=5000
+
+---
+
+# Running the Application
+
+## Backend
+
+bash npm run dev
+
+## Frontend
+
+bash npm run dev
+
+---
+
+# Project Structure
+
+ Workout-Schedule_MERN/ 
+ ├── backend/ 
+  │
+  │
+  ├── src/  
+  └── package.json
+  │
+  │
+  │ 
+  ├── frontend/ 
+  ├── src/ 
+  └── package.json
+  │
+  └── README.md
+
+---
+
+# Author
+
+Azzam Almutairi
+
+GitHub:
+https://github.com/azzam-23
