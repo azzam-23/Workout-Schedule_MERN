@@ -85,7 +85,9 @@
 }
 
 .edit-button {
-  background: tomato;
+background: #ffcc00;
+  color: #111;
+  cursor: pointer;
 }
 
 .AddExerciseButton {
