@@ -1,217 +1,85 @@
-
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 14px 30px;
-
+  padding: 12px 20px;
   background: #1a1a1a;
   color: white;
 
   border-bottom: 1px solid #333;
-  box-shadow: 0 4px 20px rgba(0,0,0,.35);
-
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-
-
+/* LOGO */
 .navbar h1 {
-  flex: 1;
-
-  font-size: 1.7rem;
-  font-weight: 700;
-
+  font-size: 1.4rem;
+  font-weight: bold;
   color: tomato;
-
-  margin: 0;
+  white-space: nowrap;
 }
 
-
-
+/* CENTER BUTTON */
 .navbar-actions {
-  flex: 1;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  gap: 12px;
-}
-
-
-
-.profile {
   flex: 1;
-
-  display: flex;
-  justify-content: flex-end;
-
-  position: relative;
 }
 
-.profile-img {
-  width: 58px;
-  height: 58px;
+/* ADD DAY BUTTON */
+.add-day-button {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
 
-  border-radius: 50%;
-  object-fit: cover;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
 
+  font-weight: 600;
   cursor: pointer;
-
-  border: 2px solid tomato;
-
-  transition: 0.3s ease;
-}
-
-.profile-img:hover {
-  transform: scale(1.08);
-  opacity: 0.9;
-}
-
-/* tooltip */
-.tooltip {
-  position: absolute;
-
-  top: 70px;
-  right: 0;
-
-  background: #2a2a2a;
-
-  padding: 6px 10px;
-
-  border-radius: 8px;
-
-  font-size: 0.85rem;
-
-  opacity: 0;
-  pointer-events: none;
 
   transition: 0.2s ease;
 }
 
-.profile:hover .tooltip {
-  opacity: 1;
+.add-day-button:hover {
+  transform: scale(1.05);
 }
 
-
-.dropdown-menu {
-  position: absolute;
-
-  top: 80px;
-  right: 0;
-
-  min-width: 180px;
-
-  background: #262626;
-
-  padding: 15px;
-
-  border-radius: 14px;
-
-  box-shadow: 0 10px 30px rgba(0,0,0,.4);
-
-  animation: fade 0.2s ease;
-}
-
-
-
-button {
-  font-family: inherit;
-}
-
-
-
-.add-day-button {
-  padding: 10px 18px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: linear-gradient(135deg, #ff4d4d, #ff7a59);
-
-  color: white;
-
-  font-weight: 600;
-  font-size: 0.95rem;
-
-  cursor: pointer;
-
-  box-shadow: 0 6px 18px rgba(255, 77, 77, 0.25);
-
-  transition: all 0.25s ease;
-
+/* PROFILE */
+.profile {
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-.add-day-button:hover {
-  transform: translateY(-3px) scale(1.05);
-
-  box-shadow: 0 12px 28px rgba(255, 77, 77, 0.4);
-
-  filter: brightness(1.08);
+  justify-content: flex-end;
+  position: relative;
 }
 
-
-.navbar-login-button {
-  padding: 10px 18px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: white;
-  color: black;
-
-  font-weight: 600;
-
+.profile-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid tomato;
   cursor: pointer;
-
-  transition: 0.25s ease;
 }
 
-.navbar-login-button:hover {
-  transform: translateY(-2px);
+/* DROPDOWN */
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 55px;
+
+  background: #262626;
+  padding: 12px;
+  border-radius: 12px;
+
+  min-width: 160px;
 }
 
-
-
-.sign-out-button {
-  width: 100%;
-
-  padding: 10px;
-
-  border: none;
-  border-radius: 10px;
-
-  background: darkred;
-  color: white;
-
-  cursor: pointer;
-
-  transition: 0.25s ease;
-}
-
-.sign-out-button:hover {
-  background: #b30000;
-}
-
-
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* -------------------- */
+/* 📱 MOBILE RESPONSIVE */
+/* -------------------- */
 
 @media (max-width: 768px) {
   .navbar {
@@ -221,16 +89,22 @@ button {
   }
 
   .navbar-actions {
-    order: 2;
-  }
-
-  .profile {
-    order: 3;
-    justify-content: center;
+    width: 100%;
   }
 
   .add-day-button {
     width: 100%;
-    max-width: 200px;
+    max-width: 220px;
+  }
+
+  .profile {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
   }
 }
