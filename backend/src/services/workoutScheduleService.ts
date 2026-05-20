@@ -1,4 +1,4 @@
-import { workoutScheduleModel } from "../models/workoutScheduleModel.ts";
+import { workoutScheduleModel } from "../models/workoutScheduleModel";
 
 
 

@@ -1,6 +1,6 @@
 import express from "express";
-import validateJWT from "../middlewares/validateJWT.ts";
-import type { ExtendRequset } from "../types/extendedRequest.ts";
+import validateJWT from "../middlewares/validateJWT";
+import type { ExtendRequset } from "../types/extendedRequest";
 
 import {
   getActiveScheduleForUser,
@@ -8,7 +8,7 @@ import {
   updateExercise,
   deleteExercise,
   deleteDay,
-} from "../services/workoutScheduleService.ts";
+} from "../services/workoutScheduleService";
 
 const router = express.Router();
 

@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import userRoute from "./routes/userRoute.js";
-import workoutScheduleRoute from "./routes/workoutScheduleRoute.ts";
+import userRoute from "./routes/userRoute";
+import workoutScheduleRoute from "./routes/workoutScheduleRoute";
 import cors from "cors";
 
 dotenv.config();
