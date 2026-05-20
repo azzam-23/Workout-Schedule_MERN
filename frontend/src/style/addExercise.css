@@ -3,8 +3,8 @@
   padding: 25px;
   border-radius: 16px;
 
-  width: min(400px, calc(100vw - 32px));
-  max-height: calc(100vh - 32px);
+  width: min(400px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
   overflow-y: auto;
 
   position: fixed;
@@ -13,7 +13,7 @@
   transform: translate(-50%, -50%);
 
   z-index: 10000;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, .4);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
 }
 
 .add-exercise-title {
@@ -41,39 +41,60 @@
 .form-group input {
   width: 100%;
   padding: 10px;
+
   border-radius: 8px;
   border: 1px solid #444;
+
   background: #2a2a2a;
   color: white;
 }
 
 .add-button-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 10px;
 }
 
-.submit-button,
-.cancel-button {
-  width: 100%;
+.submit-button {
+  flex: 1;
+  min-height: 42px;
   padding: 10px;
+
+  background: #ffcc00;
+  color: #111;
+
   border: none;
   border-radius: 8px;
+
   font-weight: bold;
   cursor: pointer;
 }
 
-.submit-button {
-  background: #ffcc00;
-}
-
 .cancel-button {
+  flex: 1;
+  min-height: 42px;
+  padding: 10px;
+
   background: #444;
   color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
+  .add-exercise-container {
+    padding: 20px;
+  }
+
   .add-button-group {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .submit-button,
+  .cancel-button {
+    width: 100%;
   }
 }

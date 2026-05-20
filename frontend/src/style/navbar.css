@@ -1,10 +1,12 @@
 .navbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
 
-  padding: 12px 20px;
+  width: 100%;
+  padding: 12px 16px;
+
   background: #1a1a1a;
   color: white;
   border-bottom: 1px solid #333;
@@ -15,26 +17,29 @@
 }
 
 .navbar h1 {
-  font-size: clamp(1rem, 3vw, 1.4rem);
-  color: tomato;
   margin: 0;
-  flex-shrink: 0;
+  font-size: 1.35rem;
+  color: tomato;
+  white-space: nowrap;
 }
 
 .navbar-actions {
   display: flex;
   justify-content: center;
-  flex: 1;
 }
 
-.add-day-button,
-.navbar-login-button {
-  width: 140px;
-  padding: 10px 16px;
+.add-day-button {
+  min-width: 120px;
+  height: 42px;
+  padding: 0 16px;
+
   border-radius: 999px;
   border: none;
+
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
   color: white;
+
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -44,9 +49,9 @@
 
 .profile {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   position: relative;
-  flex-shrink: 0;
 }
 
 .profile-img {
@@ -57,24 +62,102 @@
   cursor: pointer;
 }
 
+.navbar-login-button {
+  min-width: 110px;
+  height: 42px;
+  padding: 0 16px;
+
+  border-radius: 999px;
+  border: none;
+
+  background: tomato;
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+
+  min-width: 160px;
+  padding: 14px;
+
+  background: #242424;
+  border: 1px solid #444;
+  border-radius: 12px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+}
+
+.dropdown-menu h3 {
+  margin: 0 0 12px;
+  color: white;
+  font-size: 1rem;
+}
+
+.sign-out-button {
+  width: 100%;
+  height: 38px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: darkred;
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* iPhone / small mobile */
 @media (max-width: 600px) {
   .navbar {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title profile"
+      "action action";
+
+    padding: 10px 12px;
+    gap: 10px;
   }
 
   .navbar h1 {
-    width: 100%;
-    text-align: center;
+    grid-area: title;
+    font-size: 1.05rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .navbar-actions {
-    order: 3;
+    grid-area: action;
     width: 100%;
-    flex-basis: 100%;
   }
 
   .add-day-button {
     width: 100%;
-    max-width: 220px;
+    max-width: none;
+  }
+
+  .profile {
+    grid-area: profile;
+  }
+
+  .profile-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .navbar-login-button {
+    min-width: 96px;
+    height: 38px;
+    padding: 0 12px;
+  }
+
+  .dropdown-menu {
+    right: 0;
+    top: 46px;
   }
 }

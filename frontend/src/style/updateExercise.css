@@ -3,8 +3,8 @@
   padding: 25px;
   border-radius: 16px;
 
-  width: min(400px, calc(100vw - 32px));
-  max-height: calc(100vh - 32px);
+  width: min(400px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
   overflow-y: auto;
 
   position: fixed;
@@ -13,13 +13,14 @@
   transform: translate(-50%, -50%);
 
   z-index: 10000;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, .4);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
 }
 
 .update-exercise-title {
   color: white;
   text-align: center;
   margin-bottom: 20px;
+  font-size: 1.25rem;
 }
 
 .update-form {
@@ -28,38 +29,67 @@
 }
 
 .update-button-group {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 10px;
 }
 
-.update-button,
-.update-cancel,
-.delete-exercise-button {
-  width: 100%;
+.update-button {
+  flex: 1;
+  min-height: 42px;
   padding: 10px;
+
+  background: #ffcc00;
+  color: #111;
+
   border: none;
   border-radius: 8px;
+
   font-weight: bold;
   cursor: pointer;
 }
 
-.update-button {
-  background: #ffcc00;
-}
-
 .update-cancel {
+  flex: 1;
+  min-height: 42px;
+  padding: 10px;
+
   background: #444;
   color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .delete-exercise-button {
+  flex: 1;
+  min-height: 42px;
+  padding: 10px;
+
   background: darkred;
   color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-weight: bold;
+  cursor: pointer;
 }
 
 @media (max-width: 480px) {
+  .update-exercise-container {
+    padding: 20px;
+  }
+
   .update-button-group {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .update-button,
+  .update-cancel,
+  .delete-exercise-button {
+    width: 100%;
   }
 }
