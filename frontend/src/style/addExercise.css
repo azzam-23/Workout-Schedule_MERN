@@ -2,20 +2,25 @@
   background: #1f1f1f;
   padding: 25px;
   border-radius: 16px;
-  width: 400px;
+
+  width: min(400px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
 
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  box-shadow: 0 6px 30px rgba(0,0,0,.4);
+  z-index: 10000;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, .4);
 }
 
 .add-exercise-title {
   color: white;
   text-align: center;
   margin-bottom: 20px;
+  font-size: 1.25rem;
 }
 
 .add-exercise-form {
@@ -36,33 +41,39 @@
 .form-group input {
   width: 100%;
   padding: 10px;
-
   border-radius: 8px;
   border: 1px solid #444;
-
   background: #2a2a2a;
   color: white;
 }
 
 .add-button-group {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-.submit-button {
-  flex: 1;
+.submit-button,
+.cancel-button {
+  width: 100%;
   padding: 10px;
-  background: #ffcc00;
   border: none;
   border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-button {
+  background: #ffcc00;
 }
 
 .cancel-button {
-  flex: 1;
-  padding: 10px;
   background: #444;
   color: white;
-  border: none;
-  border-radius: 8px;
+}
+
+@media (max-width: 420px) {
+  .add-button-group {
+    grid-template-columns: 1fr;
+  }
 }

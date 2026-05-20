@@ -2,17 +2,24 @@
   background: #1f1f1f;
   padding: 25px;
   border-radius: 16px;
-  width: 400px;
+
+  width: min(400px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
 
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  z-index: 10000;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, .4);
 }
 
 .update-exercise-title {
   color: white;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .update-form {
@@ -21,26 +28,38 @@
 }
 
 .update-button-group {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-.update-button {
-  flex: 1;
-
-  background: #ffcc00;
-  border: none;
-
+.update-button,
+.update-cancel,
+.delete-exercise-button {
+  width: 100%;
   padding: 10px;
+  border: none;
   border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.update-button {
+  background: #ffcc00;
 }
 
 .update-cancel {
-  flex: 1;
-
   background: #444;
   color: white;
+}
 
-  border: none;
-  border-radius: 8px;
+.delete-exercise-button {
+  background: darkred;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .update-button-group {
+    grid-template-columns: 1fr;
+  }
 }

@@ -59,7 +59,7 @@ const RegisterPage = () => {
   return (
     <div>
       <div className="register-form">
-        <h1 className=".page-title">Register New account</h1>
+        <h1 className="page-title">Register New account</h1>
 
         <div className="input-form">
           <input
