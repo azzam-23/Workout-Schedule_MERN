@@ -212,3 +212,25 @@ button {
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .navbar-actions {
+    order: 2;
+  }
+
+  .profile {
+    order: 3;
+    justify-content: center;
+  }
+
+  .add-day-button {
+    width: 100%;
+    max-width: 200px;
+  }
+}

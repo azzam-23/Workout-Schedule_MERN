@@ -13,7 +13,7 @@ type Props = {
 const AddExercise = ({ isOpen, onClose, day }: Props) => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
-  const [sets, setSets] = useState(1);
+  const [sets, setSets] = useState(0);
  const { addExercise } = useSchedule();
   if (!isOpen) return null;
 

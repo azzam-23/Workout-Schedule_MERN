@@ -170,3 +170,9 @@
 .delete-day-button:hover {
   opacity: .8;
 }
+
+@media (max-width: 600px) {
+  .card {
+    padding: 15px;
+  }
+}
