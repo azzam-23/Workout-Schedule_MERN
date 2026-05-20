@@ -12,7 +12,6 @@ type Props = {
 
 const WorkoutCard = ({ dayPlan }: Props) => {
   const [addOpen, setAddOpen] = useState(false);
-
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
     null,
   );
@@ -28,13 +27,11 @@ const WorkoutCard = ({ dayPlan }: Props) => {
           <div key={ex._id} className="exercise-item">
             <div className="exercise-info">
               <h4 className="ex-name">{ex.name}</h4>
-
               <span className="ex-type">{ex.type}</span>
             </div>
 
             <div className="sets-display">
               <span className="sets-count">{ex.sets}</span>
-
               <span className="sets-label"> Sets</span>
             </div>
 
@@ -63,12 +60,13 @@ const WorkoutCard = ({ dayPlan }: Props) => {
           onClose={() => setAddOpen(false)}
           day={dayPlan.day}
         />
+
         {selectedExercise && (
           <UpdateExercise
             isOpen={true}
             exercise={selectedExercise}
             onClose={() => setSelectedExercise(null)}
-            />
+          />
         )}
       </div>
     </div>
@@ -76,3 +74,5 @@ const WorkoutCard = ({ dayPlan }: Props) => {
 };
 
 export default WorkoutCard;
+
+

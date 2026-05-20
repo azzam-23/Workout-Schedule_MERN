@@ -13,14 +13,14 @@ type Props = {
 const AddExercise = ({ isOpen, onClose, day }: Props) => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
-  const [sets, setSets] = useState(0);
+  const [sets, setSets] = useState<number | "">("");
  const { addExercise } = useSchedule();
   if (!isOpen) return null;
 
 
 const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
-
+ if (sets === "") return;
   addExercise({
     name,
     type,
@@ -28,6 +28,9 @@ const handleSubmit = (e: React.FormEvent) => {
     day,
   });
 
+  setName("");
+  setType("");
+  setSets("");
   onClose();
   
 };
@@ -69,7 +72,9 @@ const handleSubmit = (e: React.FormEvent) => {
             id="exercise-sets"
             min="1"
             value={sets}
-            onChange={(e) => setSets(Number(e.target.value))}
+            onChange={(e) => setSets(e.target.value === ""
+        ? ""
+        : Number(e.target.value))}
             required
           />
         </div>

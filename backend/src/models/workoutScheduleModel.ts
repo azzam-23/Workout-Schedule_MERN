@@ -20,7 +20,7 @@ export interface IWorkoutSchedule {
 const exerciseSchema = new Schema<IExercise>({
   name: { type: String, required: true },
   type: { type: String, required: true },
-  sets: { type: Number, default: 3 },
+  sets: { type: Number, required: true },
 });
 
 const dayPlanSchema = new Schema<IDayPlan>({
