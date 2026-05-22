@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import "../style/register.css";
 import { BASE_URL } from "../constants/baseUrl";
-import { useAuth } from "../context/Auth/AuthContext";
+
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -12,7 +12,6 @@ const RegisterPage = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
-  const { login } = useAuth();
   const onsubmit = async () => {
     setLoading(true);
     const name = nameRef.current?.value;
@@ -46,7 +45,7 @@ const RegisterPage = () => {
 
       console.log(data);
 
-      login(data.name, data.token);
+     
 
       navigate("/login", {
         state: {
