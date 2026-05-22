@@ -91,23 +91,17 @@ bash npm run dev
 bash npm run dev
 
 ---
-
-# Project Structure
-
- Workout-Schedule_MERN/ 
- ├── backend/ 
-  │
-  │
-  ├── src/  
-  └── package.json
-  │
-  │
-  │ 
-  ├── frontend/ 
-  ├── src/ 
-  └── package.json
-  │
-  └── README.md
+Workout-Schedule_MERN/
+│
+├── backend/
+│   ├── src/
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   └── package.json
+│
+└── README.md
 
 ---
 
