@@ -77,7 +77,7 @@ const LoginPage = () => {
         <button onClick={onsubmit} className="login-button">
           Login
         </button>
-        {loading && <p className="loading-message">Loading in...</p>}
+        {loading && <p className="loading-message">Loading...</p>}
 
         {error && <p className="error-message">{error}</p>}
       </div>
