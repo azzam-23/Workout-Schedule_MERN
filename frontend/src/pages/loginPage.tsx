@@ -12,8 +12,11 @@ const LoginPage = () => {
   const location = useLocation();
   const successMessage = location.state?.message || "";
   const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
+
   const onsubmit = async () => {
-    
+    setLoading(true);
+
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
@@ -74,6 +77,7 @@ const LoginPage = () => {
         <button onClick={onsubmit} className="login-button">
           Login
         </button>
+        {loading && <p className="loading-message">Loading in...</p>}
 
         {error && <p className="error-message">{error}</p>}
       </div>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [error, setErorr] = useState("");
+  const [loading, setLoading] = useState(false);
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -13,6 +14,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const onsubmit = async () => {
+    setLoading(true);
     const name = nameRef.current?.value;
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
@@ -83,6 +85,7 @@ const RegisterPage = () => {
           <button onClick={onsubmit} className="register-button">
             Register
           </button>
+          {loading && <p className="loading-message">Loading...</p>}
           {error && <p className="error-message">{error}</p>}
         </div>
       </div>
