@@ -16,19 +16,21 @@ const UpdateExercise = ({ isOpen, onClose, exercise }: Props) => {
   const [type, setType] = useState(exercise.type);
 
   const [sets, setSets] = useState(exercise.sets);
+  const [pr, setPr] = useState<number | "">(exercise.pr ?? "");
 
   const { updateExercise, deleteExercise } = useSchedule();
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    updateExercise({
+    await updateExercise({
       _id: exercise._id,
       name,
       type,
       sets,
+      pr: pr === "" ? undefined : pr,
       day: exercise.day,
     });
 
@@ -65,6 +67,14 @@ const UpdateExercise = ({ isOpen, onClose, exercise }: Props) => {
             type="number"
             value={sets}
             onChange={(e) => setSets(Number(e.target.value))}
+          />
+        </div>
+        <div className="form-group">
+          <label>PR</label> 
+          <input
+            type="number"
+            value={pr}
+            onChange={(e) =>  setPr(e.target.value === "" ? "" : Number(e.target.value))}
           />
         </div>
 

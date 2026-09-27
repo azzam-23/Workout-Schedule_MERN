@@ -9,6 +9,7 @@ const HomePage = () => {
   useEffect(() => {
     fetchSchedule();
   }, [token]);
+  console.log("Schedule:", schedule);
   
   return (
     <div className="home-container">

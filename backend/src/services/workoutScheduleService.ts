@@ -70,8 +70,8 @@ export const addExercise = async ({
     schedule.workoutSchedule.push(dayPlan);
   }
 
-  dayPlan.exercises.push({ name, type, sets, pr });
-
+  dayPlan.exercises.push({ name, type, sets, pr});
+console.log("Schedule  " + schedule.workoutSchedule);
   await schedule.save();
   return schedule;
 };

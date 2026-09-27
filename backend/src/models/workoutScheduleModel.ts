@@ -21,7 +21,7 @@ export interface IWorkoutSchedule {
 const exerciseSchema = new Schema<IExercise>({
   name: { type: String, required: true },
   type: { type: String, required: true },
-  pr: { type: Number, required: true },
+  pr: { type: Number, required: false },
   sets: { type: Number, required: true },
   
 });

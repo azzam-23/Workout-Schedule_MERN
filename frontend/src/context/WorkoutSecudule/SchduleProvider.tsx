@@ -105,6 +105,7 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
           name: exercise.name,
           type: exercise.type,
           sets: exercise.sets,
+          pr: exercise.pr,
         }),
       });
 

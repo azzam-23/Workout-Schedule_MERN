@@ -14,23 +14,26 @@ const AddExercise = ({ isOpen, onClose, day }: Props) => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [sets, setSets] = useState<number | "">("");
+  const [pr, setPr] = useState<number | "">("");
  const { addExercise } = useSchedule();
   if (!isOpen) return null;
 
 
-const handleSubmit = (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
  if (sets === "") return;
-  addExercise({
+ await addExercise({
     name,
     type,
     sets,
+    pr: pr === "" ? undefined : pr,
     day,
   });
 
   setName("");
   setType("");
   setSets("");
+  setPr("");
   onClose();
   
 };
@@ -76,6 +79,20 @@ const handleSubmit = (e: React.FormEvent) => {
         ? ""
         : Number(e.target.value))}
             required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="exercise-pr">Personal Record</label>
+
+          <input
+            type="number"
+            id="exercise-pr"
+            min="0"
+            step="0.1"
+            value={pr}
+            onChange={(e) => setPr(e.target.value === ""
+              ? ""
+              : Number(e.target.value))}
           />
         </div>
 

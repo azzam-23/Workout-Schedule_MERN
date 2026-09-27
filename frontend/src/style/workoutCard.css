@@ -55,7 +55,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.pr-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #bbb;
+  font-size: 0.8rem;
+}
 .ex-type {
   display: block;
   color: #bbb;

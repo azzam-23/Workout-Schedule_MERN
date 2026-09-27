@@ -34,6 +34,12 @@ const WorkoutCard = ({ dayPlan }: Props) => {
               <span className="sets-count">{ex.sets}</span>
               <span className="sets-label"> Sets</span>
             </div>
+            {ex.pr !== undefined && (
+              <div className="pr-display">
+                <span className="pr-label">PR:</span>
+                <span className="pr-value">{ex.pr}</span>
+              </div>
+            )}
 
             <button
               className="edit-button"
