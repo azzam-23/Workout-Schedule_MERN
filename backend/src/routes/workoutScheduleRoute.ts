@@ -34,13 +34,14 @@ router.post("/add", validateJWT, async (req: ExtendRequset, res) => {
   try {
     const userId = req.user!.userId;
 
-    const { name, type, sets, day } = req.body;
+    const { name, type, sets, pr, day } = req.body;
 
     const result = await addExercise({
       userId,
       name,
       type,
       sets,
+      pr,
       day,
     });
 
@@ -56,7 +57,7 @@ router.put("/update", validateJWT, async (req: ExtendRequset, res) => {
   try {
     const userId = req.user!.userId;
 
-    const { exerciseId, name, type, sets } = req.body;
+    const { exerciseId, name, type, sets, pr } = req.body;
 
     const result = await updateExercise({
       userId,
@@ -64,6 +65,7 @@ router.put("/update", validateJWT, async (req: ExtendRequset, res) => {
       name,
       type,
       sets,
+      pr,
     });
 
     res.status(200).json(result);

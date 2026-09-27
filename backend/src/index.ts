@@ -7,7 +7,7 @@ import cors from "cors";
 
 dotenv.config();
 
-console.log(process.env.MONGO_URI);
+
 const app = express();
 const port = process.env.PORT || 5000;
 

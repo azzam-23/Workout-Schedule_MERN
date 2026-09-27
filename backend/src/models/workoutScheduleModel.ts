@@ -4,6 +4,7 @@ export interface IExercise {
   _id?: Types.ObjectId;
   name: string;
   type: string;
+  pr: number;
   sets: number;
 }
 
@@ -20,7 +21,9 @@ export interface IWorkoutSchedule {
 const exerciseSchema = new Schema<IExercise>({
   name: { type: String, required: true },
   type: { type: String, required: true },
+  pr: { type: Number, required: true },
   sets: { type: Number, required: true },
+  
 });
 
 const dayPlanSchema = new Schema<IDayPlan>({

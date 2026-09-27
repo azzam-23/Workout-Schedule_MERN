@@ -47,6 +47,7 @@ interface AddExercise {
   name: string;
   type: string;
   sets: number;
+  pr: number;
   day: string;
 }
 
@@ -55,6 +56,7 @@ export const addExercise = async ({
   name,
   type,
   sets,
+  pr, 
   day,
 }: AddExercise) => {
   const schedule = await getActiveScheduleForUser({ userId });
@@ -68,7 +70,7 @@ export const addExercise = async ({
     schedule.workoutSchedule.push(dayPlan);
   }
 
-  dayPlan.exercises.push({ name, type, sets });
+  dayPlan.exercises.push({ name, type, sets, pr });
 
   await schedule.save();
   return schedule;
@@ -82,6 +84,7 @@ interface UpdateExercise {
   name?: string;
   type?: string;
   sets?: number;
+  pr?: number;
 }
 
 export const updateExercise = async ({
@@ -90,6 +93,7 @@ export const updateExercise = async ({
   name,
   type,
   sets,
+  pr,
 }: UpdateExercise) => {
   const schedule = await getActiveScheduleForUser({ userId });
 
@@ -102,6 +106,7 @@ export const updateExercise = async ({
       if (name) exercise.name = name;
       if (type) exercise.type = type;
       if (sets !== undefined) exercise.sets = sets;
+      if (pr !== undefined) exercise.pr = pr;
     }
   }
 
