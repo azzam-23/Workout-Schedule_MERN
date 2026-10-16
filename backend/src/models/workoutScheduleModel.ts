@@ -4,11 +4,12 @@ export interface IExercise {
   _id?: Types.ObjectId;
   name: string;
   type: string;
-  pr: number;
+  pr?: number;
   sets: number;
 }
 
 export interface IDayPlan {
+  _id?: Types.ObjectId;
   day: string;
   exercises: IExercise[];
 }

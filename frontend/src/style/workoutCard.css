@@ -42,7 +42,7 @@
 }
 
 .exercise-info {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
 }
 
@@ -50,23 +50,39 @@
   color: white;
   margin: 0 0 4px;
   font-size: 0.95rem;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .pr-display {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  color: #bbb;
-  font-size: 0.8rem;
+  gap: 5px;
+
+  margin-top: 6px;
+  padding: 3px 8px;
+
+  background: rgba(255, 204, 0, 0.1);
+  border: 1px solid rgba(255, 204, 0, 0.35);
+  border-radius: 6px;
+
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.pr-label {
+  color: #aaa;
+  font-weight: 600;
+}
+
+.pr-value {
+  color: #ffcc00;
+  font-weight: 700;
 }
 .ex-type {
   display: block;
   color: #bbb;
   font-size: 0.8rem;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

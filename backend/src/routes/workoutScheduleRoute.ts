@@ -32,18 +32,22 @@ router.get("/", validateJWT, async (req: ExtendRequset, res) => {
 
 router.post("/add", validateJWT, async (req: ExtendRequset, res) => {
   try {
+    
     const userId = req.user!.userId;
 
-    const { name, type, sets, pr, day } = req.body;
+    const { name, type, sets, pr, day,dayPlanId } = req.body;
 
+       
     const result = await addExercise({
       userId,
+      dayPlanId,
       name,
       type,
       sets,
       pr,
       day,
     });
+    
 
     res.status(200).json(result);
   } catch (err) {
@@ -107,12 +111,12 @@ router.delete(
 );
 
 router.delete(
-  "/day/:day",
+  "/day/:dayPlanId",
   validateJWT,
   async (
     req: ExtendRequset & {
       params: {
-        day: string;
+        dayPlanId: string;
       };
     },
     res,
@@ -120,11 +124,11 @@ router.delete(
     try {
       const userId = req.user!.userId;
 
-      const { day } = req.params;
+      const { dayPlanId } = req.params;
 
       const result = await deleteDay({
         userId,
-        day,
+        dayPlanId,
       });
 
       res.status(200).json(result);

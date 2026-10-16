@@ -44,35 +44,61 @@ export const getActiveScheduleForUser = async ({
 
 interface AddExercise {
   userId: string;
+  dayPlanId?: string;
   name: string;
   type: string;
   sets: number;
-  pr: number;
+  pr?: number;
+  day: string;
+}
+interface AddExercise {
+  userId: string;
+  dayPlanId?: string;
+  name: string;
+  type: string;
+  sets: number;
+  pr?: number;
   day: string;
 }
 
 export const addExercise = async ({
   userId,
+  dayPlanId,
   name,
   type,
   sets,
-  pr, 
+  pr,
   day,
 }: AddExercise) => {
   const schedule = await getActiveScheduleForUser({ userId });
 
-  let dayPlan = schedule.workoutSchedule.find(
-    (d) => d.day === day
-  );
+  if (dayPlanId) {
+    
+    const dayPlan = schedule.workoutSchedule.find(
+      (d) => d._id?.toString() === dayPlanId
+    );
 
-  if (!dayPlan) {
-    dayPlan = { day, exercises: [] };
-    schedule.workoutSchedule.push(dayPlan);
+    if (!dayPlan) {
+      throw new Error("Workout session not found");
+    }
+
+    
+    dayPlan.exercises.push({
+      name,
+      type,
+      sets,
+      pr,
+    });
+  } else {
+    
+    schedule.workoutSchedule.push({
+      day,
+      exercises: [{ name, type, sets, pr }],
+    });
   }
 
-  dayPlan.exercises.push({ name, type, sets, pr});
-console.log("Schedule  " + schedule.workoutSchedule);
   await schedule.save();
+
   return schedule;
 };
 
@@ -137,23 +163,22 @@ export const deleteExercise = async ({
   return schedule;
 };
 
-
-
 interface DeleteDay {
   userId: string;
-  day: string;
+  dayPlanId: string;
 }
 
 export const deleteDay = async ({
   userId,
-  day,
+  dayPlanId,
 }: DeleteDay) => {
   const schedule = await getActiveScheduleForUser({ userId });
 
   schedule.workoutSchedule = schedule.workoutSchedule.filter(
-    (dayPlan) => dayPlan.day !== day
+    (dayPlan) => dayPlan._id?.toString() !== dayPlanId
   );
 
   await schedule.save();
+
   return schedule;
 };

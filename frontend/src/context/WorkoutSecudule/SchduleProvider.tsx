@@ -1,4 +1,4 @@
-import { useState, type FC, type PropsWithChildren } from "react";
+import { useCallback, useState, type FC, type PropsWithChildren } from "react";
 import { scheduleContext } from "./SchduleContext";
 import { BASE_URL } from "../../constants/baseUrl";
 import { useAuth } from "../Auth/AuthContext";
@@ -12,71 +12,62 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const { token } = useAuth();
 
-  const fetchSchedule = async () => {
-    if (!token) return;
+const fetchSchedule = useCallback(async () => {
+  if (!token) return;
 
-    try {
-      const response = await fetch(`${BASE_URL}/workout-schedule`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  try {
+    const response = await fetch(`${BASE_URL}/workout-schedule`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      if (!response.ok) {
-        setError("Failed to fetch workout schedule");
-        return;
-      }
-
-      const data = await response.json();
-
-      setSchedule(data.workoutSchedule || []);
-    } catch (err) {
-      console.log(err);
-      setError("Server error");
+    if (!response.ok) {
+      setError("Failed to fetch workout schedule");
+      return;
     }
-  };
+
+    const data = await response.json();
+
+    setSchedule(data.workoutSchedule || []);
+  } catch (err) {
+    console.error("Fetch schedule error:", err);
+    setError("Server error");
+  }
+}, [token]);
+
 
   const addExercise = async (exercise: NewExercise) => {
-    try {
-      const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(exercise),
-      });
+      
+  try {
+    const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(exercise),
+    });
 
-      if (!response.ok) return;
+    if (!response.ok) {
+      const error = await response.text();
 
-      await fetchSchedule();
-    } catch (err) {
-      console.log(err);
+      console.error("Add exercise failed:", response.status);
+      console.error("Server response:", error);
+
+      return;
     }
-  };
 
-  const addDay = async (day: string) => {
+    await fetchSchedule();
+  } catch (err) {
+    console.error("Add exercise error:", err);
+  }
+};
+
+
+  const deleteDay = async (dayPlanId: string) => {
     try {
-      const response = await fetch(`${BASE_URL}/workout-schedule/add`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ day }),
-      });
-
-      if (!response.ok) return;
-
-      await fetchSchedule();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const deleteDay = async (day: string) => {
-    try {
-      const response = await fetch(`${BASE_URL}/workout-schedule/day/${day}`, {
+      const response = await fetch(`${BASE_URL}/workout-schedule/day/${dayPlanId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -142,7 +133,6 @@ const ScheduleProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         schedule,
         addExercise,
-        addDay,
         fetchSchedule,
         deleteDay,
         updateExercise,

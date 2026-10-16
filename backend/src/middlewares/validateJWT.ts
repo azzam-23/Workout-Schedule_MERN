@@ -29,7 +29,7 @@ const validateJWT = (
   process.env.JWT_SECRET || ''
 ) as TokenPayload;
 
-console.log(decoded);
+
   
     if (!decoded.userId) {
       return res.status(403).send("Invalid token payload");

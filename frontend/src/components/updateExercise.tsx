@@ -32,6 +32,7 @@ const UpdateExercise = ({ isOpen, onClose, exercise }: Props) => {
       sets,
       pr: pr === "" ? undefined : pr,
       day: exercise.day,
+      dayPlanId: exercise.dayPlanId
     });
 
     onClose();

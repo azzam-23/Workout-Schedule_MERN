@@ -5,6 +5,7 @@ export interface Exercise {
     sets: number;
     pr?: number;
     day: string;
+    dayPlanId?: string;
 }
 
 export type NewExercise = {
@@ -13,4 +14,5 @@ export type NewExercise = {
   sets: number;
   pr?: number;
   day: string;
+  dayPlanId?: string;
 };

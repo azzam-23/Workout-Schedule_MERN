@@ -36,8 +36,8 @@ const WorkoutCard = ({ dayPlan }: Props) => {
             </div>
             {ex.pr !== undefined && (
               <div className="pr-display">
-                <span className="pr-label">PR:</span>
-                <span className="pr-value">{ex.pr}</span>
+                <span className="pr-label">PR </span>
+                <span className="pr-value">{ex.pr} kg</span>
               </div>
             )}
 
@@ -56,7 +56,7 @@ const WorkoutCard = ({ dayPlan }: Props) => {
 
         <button
           className="delete-day-button"
-          onClick={() => deleteDay(dayPlan.day)}
+          onClick={() => deleteDay(dayPlan._id)}
         >
           Delete Day
         </button>
@@ -65,6 +65,7 @@ const WorkoutCard = ({ dayPlan }: Props) => {
           isOpen={addOpen}
           onClose={() => setAddOpen(false)}
           day={dayPlan.day}
+          dayPlanId={dayPlan._id}
         />
 
         {selectedExercise && (
@@ -80,5 +81,3 @@ const WorkoutCard = ({ dayPlan }: Props) => {
 };
 
 export default WorkoutCard;
-
-

@@ -7,7 +7,6 @@ export interface ScheduleContextType {
 
   addExercise: (exercise: NewExercise) => void;
   fetchSchedule: () => void;
-  addDay: (day: string) => void;
   deleteDay: (day: string) => void;
   updateExercise: (exercise: Exercise) => void;
   deleteExercise: (exerciseId: string) => void;
@@ -18,7 +17,6 @@ export const scheduleContext = createContext<ScheduleContextType>({
   schedule: [],
   addExercise: () => {},
   fetchSchedule: () => {},
-  addDay: () => {},
   deleteDay: () => {},
   updateExercise: () => {},
   deleteExercise: () => {},
